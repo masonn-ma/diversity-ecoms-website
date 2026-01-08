@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Shopping cart</title>
+    <%- include('../partials/head') %>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common CSS -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar CSS -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer CSS -->
+
+        <link rel="stylesheet" href="/css/site/cart.css"> <!-- Cart CSS -->
+
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <section id="cart-container">
+            <h1>Shopping Cart</h1>
+            <div>
+                <% let total = 0; %>
+                <% prodList.forEach(function(item, index) { %>
+                    <a class="product" href="/product/<%= item.refId %>" tabindex="0" aria-label="product name">
+                        <img src="<%= item.img %>" alt="product image">
+                        <div>
+                            <span id="deleteProd" role="button" onclick="location.href='/delete-item/<%= item._id %>';event.preventDefault();" tabindex="0" aria-label="remove product from cart">X</span>
+                            <span><%= item.name %></span>
+                            <span>Quantity: <%= item.quantity %></span>
+                            <span><%= item.type.charAt(0).toUpperCase() + item.type.slice(1) %></span>
+                            <span tabindex="0" aria-label="product price"no>Price: <%= item.price * item.quantity %> AUD</span>
+                        </div>
+                    </a>
+                    <% total = total + (parseInt(item.price) * parseInt(item.quantity)); %>
+                <% }); %>
+            </div>
+            <h2 tabindex="0" aria-label="total price">Total: <%= total %> AUD</h2>
+            <a href="/checkout" role="button">Checkout</a>
+        </section>
+
+        <section id="shipping-method">
+            <!-- Shipping Method -->
+            <div>
+                <h2>SHIPPING METHOD</h2>
+                <p>We offer complimentary express shipping, no returns.</p>
+            </div>
+        </section>
+        <section class="customer-support">
+            <!--CUSTOMER SUPPORT-->
+            <h2>CUSTOMER SUPPORT</h2>
+            <p class="support-info">Our client advisors are available from Mon-Fri</p>
+            <div class="contact-details">
+                <div class="contact-left">Call us at +64 *********</div>
+                <div class="contact-right">or through: diversity@gmail.com</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+        <!-- JavaScript -->
+        <script src="javascript/cart.js"></script>
+</body>
+
+</html>

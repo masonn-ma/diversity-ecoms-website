@@ -1,0 +1,27 @@
+:root {
+  --backgroundColor: #ffffff;
+  --altBackgroundColor1: #000000;
+  --altBackgroundColor2: #d9d9d9;
+
+  --text: #000000;
+  --altText1: #ffffff;
+  --altText2: rgba(0, 0, 0, 0.65);
+  --linkColor: #1e90ff;
+  --errorColor: red;
+
+  --borderColor: #000000;
+  --altBorderColor: #ffffff;
+  --buttonColor: #1e90ff;
+
+  --blurBg: gray;
+  --overlay: gray;
+}
+
+.dark-mode {
+  --backgroundColor: #121212;
+
+  --text: #ffffff;
+  --altText2: rgba(255, 255, 255, 0.65);
+
+  --borderColor: #ffffff;
+}

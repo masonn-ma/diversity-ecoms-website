@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Checkout</title>
+    <%- include('../partials/head') %>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common CSS -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar CSS -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer CSS -->
+
+        <link rel="stylesheet" href="/css/site/checkout.css"> <!-- Checkout CSS -->
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <h1>CHECKOUT</h1>
+
+        <section class="checkout-container">
+            <form class="customer-info" >
+                <h2>CUSTOMER'S INFORMATION:</h2>
+                <h3>CONTACT</h3>
+                <label for="email">Email: <span style="color:red">*</span></label>
+                <input type="email" id="email" name="email" placeholder="Email" aria-required="true">
+                <div class="error" aria-live="polite" role="alert">Field can not be empty.</div>
+
+                <label for="phoneNumber">Phone Number: <span style="color:red">*</span></label>
+                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" maxlength="10" aria-required="true">
+                <div class="error" aria-live="polite" role="alert">Field can not be empty.</div>
+
+                <label for="firstName">First Name: <span style="color:red">*</span></label>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" aria-required="true">
+                <div class="error" aria-live="polite" role="alert">Field can not be empty.</div>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+
+                <h3>ADDRESS</h3>
+
+                <label for="houseNumber">House Number: <span style="color:red">*</span></label>
+                <input type="text" id="houseNumber" name="houseNumber" placeholder="House Number" aria-required="true">
+                <div class="error" aria-live="polite" role="alert">Field can not be empty.</div>
+
+                <label for="streetName">Street: <span style="color:red">*</span></label>
+                <input type="text" id="streetName" name="streetName" placeholder="Street Name" aria-required="true">
+                <div class="error" aria-live="polite" role="alert">Field can not be empty.</div>
+
+                <label for="province">Province: <span style="color:red">*</span></label>
+                <select id="province" name="province" aria-required="true">
+                    <option value="" selected disabled>Select province</option>
+                    <option value="temp">1</option>
+                    <option value="temp">2</option>
+                    <option value="temp">3</option>
+                    <option value="temp">4</option>
+                    <option value="temp">5</option>
+                    <option value="temp">6</option>
+                    <option value="temp">7</option>
+                    <option value="temp">8</option>
+                </select>
+                <div class="error" aria-live="polite" role="alert">Field can not be empty.</div>
+
+                <label for="district">District: <span style="color:red">*</span></label>
+                <select id="district" name="district" aria-required="true">
+                    <option value="">Select district</option>
+                    <option value="one">1</option>
+                    <option value="one">2</option>
+                    <option value="one">3</option>
+                    <option value="one">4</option>
+                    <option value="one">5</option>
+                    <option value="one">6</option>
+                    <option value="one">7</option>
+                    <option value="one">8</option>
+                    <option value="one">9</option>
+                    <option value="one">10</option>
+                    <option value="one">11</option>
+                    <option value="one">12</option>
+                </select>
+                <div class="error" aria-live="polite" role="alert">Field can not be empty.</div>
+
+                <label for="ward">Ward: <span style="color:red">*</span></label>
+                <select id="ward" name="ward" aria-required="true">
+                    <option value="">Select ward</option>
+                    <option value="one">1</option>
+                    <option value="one">2</option>
+                </select>
+                <div class="error" aria-live="polite" role="alert">Field can not be empty.</div>
+
+                <label for="city">City: <span style="color:red">*</span></label>
+                <select id="city" name="city" aria-required="true">
+                    <option value="">Select city</option>
+                    <option value="one">1</option>
+                    <option value="one">2</option>
+                </select>
+                <div class="error" aria-live="polite" role="alert">Field can not be empty.</div>
+            </form>
+            <div id="items-info" aria-labelledby="itemsInfoHeading">
+                <h2>ITEM'S INFORMATION:</h2>
+                <div>
+                    <% let total = 0; %>
+                    <% prodList.forEach(function(item, index) { %>
+                        <a class="product" href="/product/<%= item.refId %>" tabindex="0" aria-label="product name">
+                            <img src="<%= item.img %>" alt="product image">
+                            <div>
+                                <span><%= item.name %></span>
+                                <span>Quantity: <%= item.quantity %></span>
+                                <span><%= item.type.charAt(0).toUpperCase() + item.type.slice(1) %></span>
+                                <span tabindex="0" aria-label="product price"no>Price: <%= item.price * item.quantity %> AUD</span>
+                            </div>
+                        </a>
+                        <% total = total + (parseInt(item.price) * parseInt(item.quantity)); %>
+                    <% }); %>
+                </div>
+                <h3 tabindex="0" aria-label="total price">Total: <%= total %> AUD</h3>
+            </div>
+        </section>
+
+        </div>
+        <div class="consent-box">
+            <input type="checkbox" id="privacyPolicy" name="privacyPolicy" aria-required="true">
+            <label for="privacyPolicy">I hereby consent to the transfer, sharing, use, collection and disclosure of
+                my personal data to third parties as set out in the <a href="/help#policy">Privacy
+                    Policy</a>.<span style="color:red">*</span></label>
+            <div class="error" aria-live="polite" role="alert">Please agree to our terms before proceeding.</div>
+            <input type="checkbox" id="marketingConsent" name="marketingConsent">
+            <label for="marketingConsent">I hereby consent to the receipt of marketing materials and other
+                promotional offers via email as per the terms described in the <a href="/help#policy">Privacy
+                    Policy</a>.</label>
+        </div>
+
+        <form class="checkout" method="POST" action="/checkout">
+            <button type="submit" id="submit">PROCEED TO PAYMENT</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+        <!-- JavaScript -->
+        <script src="javascript/checkout.js"></script>
+</body>
+
+</html>

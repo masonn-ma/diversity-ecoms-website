@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <%- include('../partials/head') %>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css --> 
+    <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css --> 
+    <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css --> 
+
+    <link rel="stylesheet" href="/css/site/login.css"> <!-- Login css -->
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <div class="form-container">
+            <form method="POST" aria-labelledby="loginForm">
+                <h1 id="loginForm">Login</h1>
+
+                <label for="email">Email: <span style="color:red">*</span></label>
+                <input type="text" id="email" name="email" value="<%= valueEmail %>" aria-required="true">
+
+                <label for="password">Password: <span style="color:red">*</span></label>
+                <input type="password" id="password" name="password" aria-required="true">
+                <div role="button" id="showpass" tabindex="0" aria-pressed="false" aria-label="Show Password">Show Password</div>
+
+                <a href="/forgot-password">Forgot password?</a>
+
+                <% if (error) { %>
+                    <div id="errorPass" class="error" role="alert">Authentication failed: Account doesn't exist or incorrect password.</div>
+                <% } else { %>
+                    <div id="errorPass" class="error" role="alert"></div>
+                <% } %>
+
+                <button type="submit"><span>Log In</span></button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+    <script src="/javascript/login.js"></script>
+</body>
+
+</html>

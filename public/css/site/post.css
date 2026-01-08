@@ -1,0 +1,404 @@
+@import url('/css/partials/color.css');
+
+#blur-bg {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 900;
+    background-color: var(--blurBg);
+    transition: opacity 0.2s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#blur-bg.active {
+    opacity: 0.5;
+    visibility: visible;
+}
+
+#loginAlert {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    flex-flow: column wrap;
+    background-color: var(--backgroundColor);
+    border-radius: 5px;
+    position: fixed;
+    width: 40%;
+    height: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 131px -61px rgba(0, 0, 0, 1);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s ease-in;
+    z-index: 999;
+    padding: 25px;
+}
+
+#loginAlert a {
+    font-size: 18px;
+}
+
+#loginAlert p {
+    font-size: 20px;
+}
+
+#loginAlert.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#loginAlert>#closePopupAlert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    position: absolute;
+    margin-bottom: 25px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#loginAlert>#closePopupAlert:hover {
+    background-color: var(--altBackgroundColor2);
+    border-radius: 50%;
+}
+
+#navigation {
+    margin: 0px;
+    padding-left: 40px;
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+main nav {
+    padding: 15px;
+}
+
+nav>a {
+    color: var(--secondColorBlack);
+    text-decoration: none;
+}
+
+nav>a:hover {
+    text-decoration: underline;
+}
+
+#topHr {
+    margin-bottom: 10px;
+}
+
+#post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+#singlePostContent {
+    width: 90vw;
+    height: auto;
+    border: 1px solid var(--borderColor);
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+#back {
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+#back {
+    color: var(--secondColorBlack);
+    text-decoration: none;
+}
+
+#back:hover {
+    text-decoration: underline;
+}
+
+/* Lines */
+.horizon {
+    border: none;
+    height: 1px;
+    background-color: #000000;
+    margin: 0;
+    width: 99%;
+}
+
+/* Single Post Modal */
+
+.userid {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    font-style: italic;
+}
+
+#postTime {
+    font-size: 14px;
+    font-style: italic;
+}
+
+#singlePostTitle {
+    margin-top: 5px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#singleContent {
+    display: block;
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+.postImg {
+    display: flex;
+    justify-content: center;
+}
+
+#userImg {
+    max-width: 70vw;
+    max-height: 40vw;
+}
+
+#cmtContent {
+    margin: 5px;
+}
+
+
+.singlePostActions {
+    margin: 15px 0;
+    margin-left: 25px;
+}
+
+.like {
+    border-radius: 30px;
+    border: 1px solid var(--borderColor);
+    padding: 8px 8px;
+    margin-right: 8px;
+    text-decoration: none;
+    color: var(--buttonColor);
+}
+
+.commentbutton {
+    border-radius: 30px;
+    border: 1px solid var(--borderColor);
+    padding: 8px 8px;
+    text-decoration: none;
+}
+
+.comment-container {
+    max-width: 96%;
+    margin: 10px auto;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: var(--primeColor);
+    overflow: auto;
+}
+
+#cmtImgContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#cmtImg {
+    max-width: 70vw;
+    max-height: 20vw;
+}
+
+.comment-container>strong {
+    font-size: 16px;
+}
+
+.comment-container>p {
+    font-size: 14px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.inputComment {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: 10px auto;
+}
+
+.inputComment textarea {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 16px;
+    margin: 8px auto;
+}
+
+#commentImg {
+    padding: 8px;
+    font-size: 16px;
+}
+
+#submitComment {
+    font-size: 16px;
+    padding: 8px;
+}
+
+
+.comment-details .like {
+    margin-left: 25px;
+    padding: 1px 5px;
+}
+
+.comment-details {
+    margin-bottom: 10px;
+}
+
+.inputCommentChild {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    display: none;
+    width: 92%;
+    margin: 10px auto;
+}
+
+.inputCommentChild.active {
+    display: flex
+}
+
+.inputCommentChild textarea {
+    width: 100%;
+    padding: 1px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 14px;
+    margin: 8px auto;
+}
+
+#commentImg {
+    padding: 6px;
+    font-size: 14px;
+}
+
+#submitComment {
+    font-size: 14px;
+    padding: 6px;
+}
+
+.commentChild-container {
+    max-width: 80%;
+    margin: 10px auto;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: var(--primeColor);
+    overflow: auto;
+}
+
+#cmtChildImg {
+    max-width: 60vw;
+    max-height: 15vw;
+}
+
+#cmtChildImgContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.commentChild-container>strong {
+    font-size: 14px;
+}
+
+#cmtChildContent {
+    font-size: 12px;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 768px) {
+
+    #navigation {
+        margin: 0px;
+        padding-left: 10px;
+        padding-top: 20px;
+        font-size: 12px;
+    }
+
+    #post {
+        width: 100%;
+        height: auto;
+        padding: 30px 0px;
+    }
+
+    #loginAlert {
+        width: 70%;
+    }
+
+    #loginAlert a {
+        font-size: 16px;
+    }
+
+    #loginAlert p {
+        font-size: 18px;
+    }
+
+    .userid {
+        font-size: 14px;
+    }
+
+    #postTime {
+        font-size: 12px;
+    }
+
+    #singlePostTitle {
+        font-size: 18px;
+    }
+
+    #singleContent {
+        font-size: 14px;
+    }
+
+    #userImg {
+        max-width: 70vw;
+        max-height: 50vw;
+    }
+
+    #cmtImg {
+        max-width: 70vw;
+        max-height: 25vw;
+    }
+
+    .comment-container>strong {
+        font-size: 14px;
+    }
+
+    .comment-container>p {
+        font-size: 12px;
+    }
+
+    #cmtChildImg {
+        max-width: 60vw;
+        max-height: 20vw;
+    }
+
+    .commentChild-container>strong {
+        font-size: 12px;
+    }
+
+    #cmtChildContent {
+        font-size: 10px;
+    }
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Forums</title>
+    <%- include('../partials/head') %>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+
+        <link rel="stylesheet" href="/css/site/post.css"> <!-- Forum page css-->
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <div id="blur-bg"></div>
+        <div id="loginAlert">
+            <div id="closePopupAlert" onclick="toggleAlert()">X</div>
+            <p>Please login before interacting with the forums.</p>
+            <a role="button" href="/login">Login</a>
+            <a role="button" href="/signup">Signup</a>
+        </div>
+
+        <nav id="navigation"><a href="/">Home</a> / <a href="/forums">Forum</a> / <a href="#">
+                <%= post.title %>
+            </a></nav>
+        <hr class="horizon" id="topHr">
+
+        <a href="/forums" id="back">Back</a>
+
+        <div class="singlePostContainer">
+            <section id="post">
+                <div id="singlePostContent">
+                    <p class="userid">
+                        <%= post.username %> <br>
+                    </p>
+                    <span id="postTime">
+                        <%= post.timeAgo %>
+                    </span>
+                    <p id="singlePostTitle">
+                        <%= post.title %>
+                    </p>
+                    <p id="singleContent">
+                        <%= post.content %>
+                    </p>
+                    <p class="postImg">
+                        <% if (post.img) { %>
+                            <img src="<%= post.img %>" alt="post img" id="userImg">
+                            <% } %>
+                    </p>
+                    <hr class="horizon">
+                    <div class="singlePostActions">
+                        <% if (userId) { %>
+                            <% if ((post.likes).includes(userId)) { %>
+                                <a class="like" href="/remove-like/<%= post._id %>"><i class="fa-solid fa-thumbs-up"
+                                        style="color: #1e90ff;"></i>
+                                    <%= post.likeCount %>
+                                </a>
+                                <% } else { %>
+                                    <a class="like" href="/like-post/<%= post._id %>"><i
+                                            class="fa-regular fa-thumbs-up"></i>
+                                        <span class="likeCount" style="color: black;">
+                                            <%= post.likeCount %>
+                                        </span>
+                                    </a>
+                                    <% } %>
+                                        <% } else { %>
+                                            <a class="like" onclick="toggleAlert();"><i
+                                                    class="fa-regular fa-thumbs-up"></i>
+                                                <span class="likeCount" style="color: black;">
+                                                    <%= post.likeCount %>
+                                                </span>
+                                            </a>
+                                            <% } %>
+                                                <a class="commentbutton" href="/post/<%= post._id %>#commentList">
+                                                    <i class="fa-regular fa-comment"></i>
+                                                    <%= post.commentCount %>
+                                                </a>
+                    </div>
+                    <form class="inputComment" action="/add-comment/<%= post._id %>/null" method="POST"
+                        enctype="multipart/form-data">
+                        <textarea id="commentField" name="commentField" type="text" placeholder="Add comment"
+                            required></textarea>
+                        <input type="file" id="commentImg" name="commentImg">
+
+                        <button id="submitComment">Add comment</button>
+                    </form>
+
+                    <div id="commentSection">
+                        <ul id="commentList">
+                            <% if (comments) { %>
+                                <% comments.forEach(function(comment, index) { %>
+                                    <% if (comment.parentCommentId===null) { %>
+                                        <li>
+                                            <div class="comment-container" id="comment-<%= comment._id %>">
+                                                <strong id="author">
+                                                    <%= comment.author %>
+                                                </strong>
+                                                <p id="cmtContent">
+                                                    <%= comment.content %>
+                                                </p>
+                                                <p id="cmtImgContainer">
+                                                    <% if (comment.img) { %>
+                                                        <img src="<%= comment.img %>" alt="comment image" id="cmtImg">
+                                                        <% } %>
+                                                </p>
+                                                <div class="comment-details">
+                                                    <% if (userId) { %>
+                                                        <% if ((comment.likes).includes(userId)) { %>
+                                                            <a class="like"
+                                                                href="/remove-comment-like/<%= comment._id %>"><i
+                                                                    class="fa-solid fa-thumbs-up"
+                                                                    style="color: #1e90ff;"></i>
+                                                                <%= comment.likeCount %>
+                                                            </a>
+                                                            <% } else { %>
+                                                                <a class="like"
+                                                                    href="/add-comment-like/<%= comment._id %>"><i
+                                                                        class="fa-regular fa-thumbs-up"></i>
+                                                                    <span class="likeCount" style="color: black;">
+                                                                        <%= post.likeCount %>
+                                                                    </span>
+                                                                </a>
+                                                                <% } %>
+                                                                    <% } else { %>
+                                                                        <a class="like" onclick="toggleAlert()"><i
+                                                                                class="fa-regular fa-thumbs-up"></i>
+                                                                            <span class="likeCount"
+                                                                                style="color: black;">
+                                                                                <%= post.likeCount %>
+                                                                            </span>
+                                                                        </a>
+                                                                        <% } %>
+                                                                            <span id="replycmt"
+                                                                                onclick="toggleReply()">Reply</span>
+                                                </div>
+                                                <form class="inputCommentChild"
+                                                    action="/add-comment/<%= post._id %>/<%= comment._id %>"
+                                                    method="POST" enctype="multipart/form-data">
+                                                    <textarea id="commentField" name="commentField" type="text"
+                                                        placeholder="Add comment" required></textarea>
+                                                    <input type="file" id="commentImg" name="commentImg">
+                                                    <button id="submitComment">Add Comment</button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                        <% } %>
+                                            <% comments.forEach(function(commentChild) { %>
+                                                <% if (String(commentChild.parentCommentId)===String(comment._id)) { %>
+                                                    <li>
+                                                        <ul>
+                                                            <li>
+                                                                <div class="commentChild-container"
+                                                                    id="comment-<%= commentChild._id %>">
+                                                                    <strong>
+                                                                        <%= commentChild.author %>
+                                                                    </strong>
+                                                                    <p id="cmtChildContent">
+                                                                        <%= commentChild.content %>
+                                                                    </p>
+                                                                    <p id="cmtChildImgContainer">
+                                                                        <% if (commentChild.img) { %>
+                                                                            <img src="<%= commentChild.img %>"
+                                                                                alt="comment image" id="cmtChildImg">
+                                                                            <% } %>
+                                                                    </p>
+                                                                    <div class="comment-details">
+                                                                        <% if (userId) { %>
+                                                                            <% if
+                                                                                ((commentChild.likes).includes(userId))
+                                                                                { %>
+                                                                                <a class="like"
+                                                                                    href="/remove-comment-like/<%= commentChild._id %>">
+                                                                                    <i class="fa-solid fa-thumbs-up"
+                                                                                        style="color: #1e90ff;"></i>
+                                                                                    <%= commentChild.likeCount %>
+                                                                                </a>
+                                                                                <% } else { %>
+                                                                                    <a class="like"
+                                                                                        href="/add-comment-like/<%= commentChild._id %>"><i
+                                                                                            class="fa-regular fa-thumbs-up"></i>
+                                                                                        <%= commentChild.likeCount %>
+                                                                                    </a>
+                                                                                    <% } %>
+                                                                                        <% } else { %>
+                                                                                            <a class="like"
+                                                                                                onclick="toggleAlert()"><i
+                                                                                                    class="fa-regular fa-thumbs-up"></i>
+                                                                                                <%= commentChild.likeCount
+                                                                                                    %>
+                                                                                            </a>
+                                                                                            <% } %>
+                                                                    </div>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <% }; %>
+                                                        <% }); %>
+                                                            <% }); %>
+                                                                <% } %>
+                        </ul>
+                    </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+        <script src="/javascript/post.js" defer></script>
+</body>
+
+</html>

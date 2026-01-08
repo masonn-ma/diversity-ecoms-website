@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Item</title>
+    <%- include('../partials/head') %>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css --> 
+    <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css --> 
+    <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+
+    <link rel="stylesheet" href="/css/site/item.css"> <!-- Item css -->
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <section>
+            <p id="navigation"><a href="/">Home</a> / <a href="/category">Category</a> / <a href="/category?type=<%= prod.type %>"><%= prod.type.charAt(0).toUpperCase() + prod.type.slice(1) %></a> / <a href="#"><%= prod.name %></a></p>
+        </section>
+        <section>
+            <div id="pictures">
+                <img src="<%= prod.img %>" alt="product image" id="mainImg">
+            </div>
+            <div id="words">
+                <div id="product-details">
+                    <h1 id="name"><%= prod.name %></h1>
+                    <p><%= prod.type.charAt(0).toUpperCase() + prod.type.slice(1) %></p>
+                    <p>Price: <%= prod.price %> AUD</p>
+                    <p>Quantity: <%= prod.qty %> left in stock</p>
+                </div>
+                <div id="product-purchase">
+                    <form method="POST" action="/product/<%= prod._id %>" aria-label="Form for adding product to cart">
+                        <label for="quantityInput">Select quantity:</label>
+                        <div>
+                            <div id="decrease" class="change-quantity" tabindex="0" role="button" aria-label="decrease quantity selected"> <span> - </span> </div>
+                            <input onkeydown="return false" id="quantityInput" name="quantityInput" min="1" max="<%= prod.qty %>" value="1" tabindex="-1">
+                            <div id="increase" class="change-quantity" tabindex="0" role="button" aria-label="increase quantity selected"> <span> + </span> </div>
+                        </div>
+                        <% if (userId) { %>
+                            <button type="submit">ADD TO CART</button>
+                        <% } else { %>
+                            <a href="/login" role="button">ADD TO CART</a>
+                        <% } %>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div id="description">
+                <h2>Description</h2>
+                <p><%= prod.desc %></p>
+            </div>
+            <div id="similarProd">
+                <h2>Similar Products</h2>
+                <div id="product-list">
+                    <% similar.forEach(function(product, index) { %>
+                        <a href="/product/<%= product._id %>" tabindex="0">
+                            <img src="<%= product.img %>" alt="<%= product.name %>">
+                        </a>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+    <script src="/javascript/item.js" defer></script>
+</body>
+
+</html>

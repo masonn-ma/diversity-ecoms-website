@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Manage post</title>
+    <%- include('../partials/head') %>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+
+        <link rel="stylesheet" href="/css/site/profile.css"> <!-- Common css for profile page -->
+        <link rel="stylesheet" href="/css/site/manage-post.css"> <!-- History css -->
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <section id="side" role="navigation" aria-label="Profile Navigation">
+            <div id="imgBox">
+                <img src="<%= img %>" alt="User's profile picture" tabindex="0" id="userProfileImg">
+                <div id="overlay-img"></div>
+            </div>
+            <ul>
+                <li><a href="/settings"><span>Settings</span></a>
+                </li>
+                <li><a href="/history"><span>History</span></a></li>
+                <li class="active" aria-current="page"><a href="/manage-post"><span>Manage post</span></a></li>
+                <li><a href="/help"><span>Help</span></a></li>
+                <li><a href="/help#terms"><span>Terms and Conditions</span></a></li>
+                <% if (admin) { %>
+                    <li><a href="/admin"><span>Admin page</span></a></li>
+                    <% } %>
+            </ul>
+            <div id="logout">
+                <a href="/logout" role="button">Log out</a>
+            </div>
+        </section>
+        <div id="blur-bg" tabindex="-1"></div>
+        <form method="POST" action="/upload" enctype="multipart/form-data" id="uploadImg">
+            <div id="closePopup" tabindex="0">X</div>
+            <input type="file" name="myFile" id="myFile">
+            <button type="submit">Submit</button>
+        </form>
+        <section>
+            <ul>
+                <li id="postListButton" tabindex="0">Posts</li>
+                <ul id="postList">
+                    <% if (postList) { %> 
+                        <% postList.forEach(function(post, index) { %>
+                            <li tabindex="0">
+                                <span><%= post.title %></span>
+                                <span>Likes: <%= post.likeCount %></span>
+                                <span>Comments: <%= post.commentCount %></span>
+                                <div>
+                                    <a href="/post/<%= post._id %>" role="button">View post</a>
+                                    <form action="/delete-post" method="POST"><button type="submit" name="postId" value="<%= post._id %>">Delete post</button></form>
+                                </div>
+                            </li>
+                        <% }); %>
+                    <% } else { %>
+                        <li tabindex="0"><span>So empty...</span></li>
+                    <% } %>
+                </ul>
+            </ul>
+            <ul>
+                <li id="commentListButton" tabindex="0">Comment</li>
+                <ul id="commentList">
+                    <% if (commentList) { %>
+                        <% commentList.forEach(function(comment, index) { %>
+                            <li tabindex="0">
+                                <span><%= comment.content %></span>
+                                <span>Likes: <%= comment.likeCount %></span>
+                                <div>
+                                    <a href="/post/<%= comment.postId %>#comment-<%= comment._id %>" role="button">View comment</a>
+                                    <form method="POST" action="/delete-comment"><button type="submit" name="commentId" value="<%= comment._id %>">Delete comment</button></form>
+                                </div>
+                            </li>
+                        <% }); %>
+                    <% } else { %>
+                        <li tabindex="0"><span>So empty...</span></li>
+                    <% } %>
+                </ul>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+        <script src="/javascript/profile.js" defer></script>
+        <script src="/javascript/manage-post.js" defer></script>
+</body>
+
+</html>

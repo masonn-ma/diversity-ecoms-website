@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Settings</title>
+    <%- include('../partials/head') %>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+
+        <link rel="stylesheet" href="/css/site/profile.css"> <!-- Common css for profile page -->
+        <link rel="stylesheet" href="/css/site/settings.css"> <!-- Settings css -->
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <section id="side" role="navigation" aria-label="Profile Navigation">
+            <div id="imgBox">
+                <img src="<%= img %>" alt="User's profile picture" tabindex="0" id="userProfileImg">
+                <div id="overlay-img"></div>
+            </div>
+            <ul>
+                <li class="active" aria-current="page"><a href="/settings"><span>Settings</span></a>
+                </li>
+                <li><a href="/history"><span>History</span></a></li>
+                <li><a href="/manage-post"><span>Manage post</span></a></li>
+                <li><a href="/help"><span>Help</span></a></li>
+                <li><a href="/help#terms"><span>Terms and Conditions</span></a></li>
+                <% if (admin) { %>
+                    <li><a href="/admin"><span>Admin page</span></a></li>
+                <% } %>
+            </ul>
+            <div id="logout">
+                <a href="/logout" role="button">Log out</a>
+            </div>
+        </section>
+        <div id="blur-bg" tabindex="-1"></div>
+        <form method="POST" action="/upload" enctype="multipart/form-data" id="uploadImg">
+            <div id="closePopup" tabindex="0">X</div>
+            <input type="file" name="myFile" id="myFile">
+            <button type="submit">Submit</button>
+        </form>
+        <section id="settings" class="tabs" role="tabpanel" aria-labelledby="settings-tab">
+            <div id="information">
+                <h2 id="settings-tab">Settings</h2>
+                <form method="POST" action="/settings/info">
+                    <div>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" placeholder="<%= valName %>">
+                    </div>
+
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="<%= valEmail %>">
+                    </div>
+
+                    <div>
+                        <label for="password">Password:</label>
+                        <% let hidePass = ''; %>
+                        <% for (let i = 0; i < valPassword.length; i++) { 
+                            hidePass = hidePass + "*";
+                        } %>
+
+                        <input type="password" id="password" name="password" placeholder="<%= hidePass %>">
+                    </div>
+
+                    <div>
+                        <label for="phoneNum">Tel:</label>
+                        <input type="text" id="phoneNum" name="phoneNum" placeholder="<%= valPhone %>">
+                    </div>
+                    <button type="submit">Save changes</button>
+                </form>
+            </div>
+            <div>
+                <form method="POST" action="/settings/mode" id="darkModeForm">
+                    <label for="dark">Dark mode:</label>
+                    <label class="switch">
+                        <% if (dark === 'true') { %> 
+                            <input type="checkbox" id="dark" name="dark" checked>
+                        <% } else { %>
+                            <input type="checkbox" id="dark" name="dark">
+                        <% } %>
+                        <span class="slider round"></span>
+                    </label>
+                </form>
+                <form action="/settings/deactivate" method="POST"><button name="lock" value="<%= userId %>">Deactivate account</button></form>
+                <form action="/settings/deactivate" method="POST"><button name="lock" value="<%= userId %>">Delete account</button></form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+        <script src="/javascript/profile.js"></script>
+        <script src="/javascript/settings.js"></script>
+</body>
+
+</html>

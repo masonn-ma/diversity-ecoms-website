@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>History</title>
+    <%- include('../partials/head') %>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+
+        <link rel="stylesheet" href="/css/site/profile.css"> <!-- Common css for profile page -->
+        <link rel="stylesheet" href="/css/site/history.css"> <!-- History css -->
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <section id="side" role="navigation" aria-label="Profile Navigation">
+            <div id="imgBox">
+                <img src="<%= img %>" alt="User's profile picture" tabindex="0" id="userProfileImg">
+                <div id="overlay-img"></div>
+            </div>
+            <ul>
+                <li><a href="/settings"><span>Settings</span></a>
+                </li>
+                <li class="active" aria-current="page"><a href="/history"><span>History</span></a></li>
+                <li><a href="/manage-post"><span>Manage post</span></a></li>
+                <li><a href="/help"><span>Help</span></a></li>
+                <li><a href="/help#terms"><span>Terms and Conditions</span></a></li>
+                <% if (admin) { %>
+                    <li><a href="/admin"><span>Admin page</span></a></li>
+                    <% } %>
+            </ul>
+            <div id="logout">
+                <a href="/logout" role="button">Log out</a>
+            </div>
+        </section>
+        <div id="blur-bg" tabindex="-1"></div>
+        <form method="POST" action="/upload" enctype="multipart/form-data" id="uploadImg">
+            <div id="closePopup" tabindex="0">X</div>
+            <input type="file" name="myFile" id="myFile">
+            <button type="submit">Submit</button>
+        </form>
+        <section id="history">
+            <% if (history) { %>
+                <% history.forEach(function(part, index) { %>
+                    <ul>
+                        <li tabindex="0"><%= String(part.createdAt.getDate()) + " - " + String(part.createdAt.getMonth() + 1) + " - " + String(part.createdAt.getFullYear()) %></li>
+                        <ul>
+                            <% (part.products).forEach(function(item , index) { %>
+                                <li>
+                                    <div class="product" tabindex="0">
+                                        <div>
+                                            <img src="<%= item.img %>" alt="Product image">
+                                        </div>
+                                        <div>
+                                            <p><%= item.name %></p>
+                                            <p><%= item.type.charAt(0).toUpperCase() + item.type.slice(1) %></p>
+                                            <p>Quantity: <%= item.quantity %></p>
+                                            <p>Price: <%= item.price*item.quantity %> AUD</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </ul>
+                <% }); %>
+            <% } else { %>
+                <p style="text-align: center;font-size: 32px;">So empty...</p>
+            <% } %>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+        <script src="/javascript/profile.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Category</title>
+    <%- include('../partials/head') %>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+    <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+    <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+    
+    <link rel="stylesheet" href="/css/site/category.css"> <!-- Category css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <section>
+            <div id="top-container">
+                <p id="navigation"><a href="/">Home</a> / <a href="/category">Category</a></p>
+                <h1>Category</h1>
+                <div id="searching-part">
+                </div>
+            </div>
+
+            <form method="GET" action="/category" id="filterMenu">
+                <select name="type" id="prodType">
+                    <option value="product type" disabled selected>Type</option>
+                    <option value="shoes">Shoes</option>
+                    <option value="shirt">Shirt</option>
+                    <option value="pants">Pants</option>
+                </select>
+                <select name="color" id="color">
+                    <option value="color" disabled selected>Color</option>
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="green">Green</option>
+                    <option value="pink">Pink</option>
+                </select>
+                <select name="sorting" id="sorting">
+                    <option value="sorting" disabled selected>Sorting</option>
+                    <option value="descending">Expensive to cheap</option>
+                    <option value="ascending">Cheap to expensive</option>
+                </select>
+                <div>
+                    <label for="lowest">
+                        Lowest Price:
+                        <input type="number" value="1" min="1" max="100" name="lowest" id="highest">
+                    </label>
+                    <label for="highest">
+                        Highest Price:
+                        <input type="number" value="100" min="1" max="100" name="highest" id="highest">
+                    </label>
+                </div>
+
+                <label for="search">
+                    <i class="fa fa-search" id="searchButton"></i>
+                    <input type="text" placeholder="Search.." name="search" id="searchInput" aria-label="Search products">
+                </label>
+                
+                
+                <button type="submit">Filter</button>
+            </form>
+        </section>
+        <section id="product-grid">
+                <% prodList.forEach(function(product, index) { %>
+                    <a href="/product/<%= product._id %>">
+                        <div class="product">
+                            <div id="img-container"><img src="<%= product.img %>" alt="<%= product.name %>"></div>
+                            <div id="product-desc">
+                                <span id="prod-name"><%= product.name %></span>
+                                <span id="prod-tag"><%= product.type.charAt(0).toUpperCase() + product.type.slice(1) %></span>
+                                <span id="prod-quantity"><%= product.qty %> left in stock</span>
+                                <span id="prod-price">Price: <%= product.price %> AUD</span>
+                            </div>
+                        </div>
+                    </a>
+                <% }) %>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+        <!-- JavaScript -->
+        <!-- <script src="/javascript/category.js"></script> -->
+
+</body>
+
+</html>

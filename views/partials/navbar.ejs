@@ -1,0 +1,108 @@
+<nav>
+    <!-- Top half of the navbar -->
+    <div class="top-nav">
+        <div class="topNav-container">
+            <div id="diversityLogoSmall">
+                <img src="/img/navbar/Diversity_logo_small.png" alt="small Diversity logo">
+            </div>
+            <div id="diversityLogo">
+                <a href="/">DIVERSITY</a>
+            </div>
+            <ul>
+                <li><a href="/help">Help</a></li>
+                <% if (!username == '') { %>
+                    <li><a href="/settings"><%= username %></a></li>
+                    <li><a href="/logout">Log out</a></li>
+                <% } else { %>
+                    <li><a href="/login">Log in</a></li>
+                    <li><a href="/signup">Sign up</a></li>
+                <% } %>
+            </ul>
+            <div class="icons">
+                <a href="/shopping-cart" aria-label="Shopping cart"><img src="/img/navbar/shopCart.png" alt="shopping cart icon" aria-label="Shopping cart"></a>
+                <a id="hamOpen" href="#" role="button"role="button" aria-expanded="false" aria-controls="hamMenu" aria-label="Open hamburger menu">
+                    <img src="/img/navbar/hamMenu.png" alt="open hamburger menu">
+                </a>
+            </div>
+            <div id="hamMenu" role="button" aria-expanded="false" aria-controls="hamMenu" aria-label="Open hamburger menu"> <!-- Mobile hamburger menu -->
+                <div id="hamClose-container">
+                    <a id="hamClose" role="button" href="#" aria-label="Close hamburger menu">
+                        <img src="/img/navbar/hamMenu.png" alt="close hamburger menu">
+                    </a>
+                    <% if (!username == '') { %>
+                        <a href="/settings"><%= username %></a>
+                        <a href="/logout">Log out</a>
+                    <% } else { %>
+                        <a href="/login">Log in</a>
+                        <a href="/signup">Sign up</a>
+                    <% } %>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="/"><span>Home</span></a>
+                        <li><a href="/category"><span>Category</span></a>
+                        <li><a href="/forums"><span>Forums</span></a></li>
+                        <li><a href="/about-us"><span>About us</span></a></li>
+                        <li><a href="/help"><span>Help</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="blur-mobile-bg"></div>
+        </div>
+    </div>
+
+    <!-- Bottom half of the navbar -->
+    <div class="bot-nav">
+        <div class="botNav-container">
+            <ul>
+                <li id="category">
+                    <a href="/category"><span>Category</span></a>
+                    <div id="category-expand" tabIndex="0">
+                        <div>
+                            <h3>Men</h3>
+                            <ul class="cateList">
+                                <li><a href="/category">Shoes</a></li>
+                                <li><a href="/category">Clothing</a></li>
+                                <li><a href="/category">Pants</a></li>
+                                <li><a href="/category">Shirt</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Women</h3>
+                            <ul class="cateList">
+                                <li><a href="/category">Shoes</a></li>
+                                <li><a href="/category">Clothing</a></li>
+                                <li><a href="/category">Pants</a></li>
+                                <li><a href="/category">Shirt</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Shortcuts</h3>
+                            <ul class="cateList">
+                                <li><a href="/forums">Forums</a></li>
+                                <li><a href="/sitemap">Sitemap</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <div id="blur-background"></div>
+                <li><a href="/#latest"><span>Latest</span></a></li>
+                <li><a href="/forums"><span>Forums</span></a></li>
+                <li><a href="/about-us"><span>About us</span></a></li>
+                <li><a href="/sitemap"><span>Sitemap</span></a></li>
+            </ul>
+            <ul>
+                <li><a href="/shopping-cart"><img src="/img/navbar/shopCart.png" alt="shopping cart"></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script> 
+    let dark = '<%-dark%>';
+    if (dark === 'true') {
+        document.querySelector(':root').classList.add('dark-mode');
+    } else {
+        document.querySelector(':root').classList.remove('dark-mode');
+    }
+</script> 
+<script src="/javascript/navbar.js" defer></script>

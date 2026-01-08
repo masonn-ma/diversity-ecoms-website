@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Create account</title>
+    <%- include('../partials/head') %>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css --> 
+    <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css --> 
+    <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css --> 
+
+    <link rel="stylesheet" href="/css/site/signup.css"> <!-- Login css -->
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <div class="form-container">
+            <h1 id="signupForm">Create Account</h1>
+
+            <form action="/signup" method="POST" aria-labelledby="signupForm" id="signupForm">
+                <label for="username">Username: <span style="color:red">*</span></label>
+                <input type="text" id="username" name="username" value="<%= inputNameVal %>" aria-required="true">
+                <% if (errorName) { %>
+                    <div id="errorName" class="error" role="alert"><%= errorNameVal %></div>
+                <% } else { %>
+                    <div id="errorName" class="error" role="alert"></div>
+                <% } %>
+
+                <label for="email">Email: <span style="color:red">*</span></label>
+                <input type="email" id="email" name="email" value="<%= inputEmailVal %>" aria-required="true">
+                <% if (errorEmail) { %>
+                    <div id="errorEmail" class="error" role="alert"><%= errorEmailVal %></div>
+                <% } else { %>
+                    <div id="errorEmail" class="error" role="alert"></div>
+                <% } %>
+
+                <label for="password">Password: <span style="color:red">*</span></label>
+                <input type="password" id="password" name="password" value="<%= inputPassVal %>" aria-required="true">
+                <% if (errorPass) { %>
+                    <div id="errorPass" class="error" role="alert"><%= errorPassVal %></div>
+                <% } else { %>
+                    <div id="errorPass" class="error" role="alert"></div>
+                <% } %>
+                <div role="button" id="showpass" tabindex="0" data-target="password" aria-pressed="false" aria-label="Show Password">Show Password</div>
+
+                <ul>
+                    <li>Password must include both uppercase and lowercase characters.</li>
+                    <li>Password must be atleast 8 characters long.</li>
+                    <li>Password must not contain whitespace.</li>
+                    <li>Password must not contain special characters such as @, &, *.</li>
+                </ul>
+
+                <label for="retype">Re-enter Password: <span style="color:red">*</span></label>
+                <input type="password" id="retype" name="retype" value="<%= inputRetypeVal %>" aria-required="true">
+                <% if (errorRetype) { %>
+                    <div id="errorRetype" class="error" role="alert"><%= errorRetypeVal %></div>
+                <% } else { %>
+                    <div id="errorRetype" class="error" role="alert"></div>
+                <% } %>
+                <div role="button" id="showpass" tabindex="0" data-target="retype" aria-pressed="false" aria-label="Show Password">Show Password</div>
+
+                <div class="g-recaptcha" data-sitekey="6LcbxOYpAAAAAC_9ilEGMihHSsqFh9qp9nMk41QG"></div>
+
+                <button type="submit" value="Submit">Create account</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+    <script src="javascript/signup.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script> <!-- reCAPTCHA -->
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Account created</title>
+    <%- include('../partials/head') %>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+
+        <link rel="stylesheet" href="/css/site/createdAcc.css"> <!-- Created account css -->
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <article>
+            <h1>Account successfully created!</h1>
+            <p>Your account has been successfully created. You can now log in.</p>
+            <a href="/login" role="button">Login</a>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+</body>
+
+</html>

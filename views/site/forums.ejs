@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Forums</title>
+    <%- include('../partials/head') %>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+
+        <link rel="stylesheet" href="/css/site/forums.css"> <!-- Forum page css-->
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <div id="blur-bg"></div>
+        <form method="POST" action="/create-post" id="postForm" enctype="multipart/form-data">
+            <div id="closePopup"><i class="fa-solid fa-xmark"></i></div>
+
+            <label for="thread">Topic:</label>
+            <select name="thread" id="thread">
+                <option value="general" selected>General</option>
+                <option value="news">News</option>
+                <option value="clothes">Clothes</option>
+                <option value="shoes">Shoes</option>
+            </select>
+
+            <label for="createPostTitle">Title:</label>
+            <input type="text" id="createPostTitle" name="createPostTitle" required>
+
+            <label for="createPostContent">Content:</label>
+            <textarea id="createPostContent" name="createPostContent" required></textarea>
+
+            <label for="postImage">Upload Image:</label>
+            <input type="file" id="postImage" name="postImage">
+
+            <button type="submit">Create Post</button>
+        </form>
+        <div id="loginAlert">
+            <div id="closePopupAlert" onclick="toggleAlert()"><i class="fa-solid fa-xmark"></i></div>
+            <p>Please login before interacting with the forums.</p>
+            <a role="button" href="/login">Login</a>
+            <a role="button" href="/signup">Signup</a>
+        </div>
+
+        <nav id="navigation"><a href="/">Home</a> / <a href="/forums">Forum</a></nav>
+
+        <h1 id="title">FORUM</h1>
+
+        <div class="top">
+            <form action="/forums" method="GET">
+                <select name="filter" id="filter">
+                    <option value="" selected>All</option>
+                    <option value="general">General</option>
+                    <option value="news">News</option>
+                    <option value="clothes">Clothes</option>
+                    <option value="Shoes">Shoes</option>
+                </select>
+
+                <select name="timeSorting" id="timeSelection">
+                    <option value="" selected>Default</option>
+                    <option value="latest">Latest</option>
+                    <option value="oldest">Oldest</option>
+                    <option value="most">Most Popular</option>
+                    <option value="least">Least Popular</option>
+                </select>
+
+                <div class="searchContainer">
+                    <i class="fa fa-search"></i>
+                    <input type="text" name="search" id="search" placeholder="Search">
+                </div>
+                <button type="submit" id="searchButton">Search</button>
+            </form>
+        </div>
+        <div class="createContainer">
+            <% if (userId) { %>
+                <a href="/manage-post"><button id="manage">Manage Posts</button></a>
+                <% } else { %>
+                    <a href="/login"><button id="manage">Manage Posts</button></a>
+                    <% } %>
+
+                        <% if (userId) { %>
+                            <button id="createPost" class="createPostButton"><i class="fa-regular fa-square-plus"></i> Create
+                                Post</button>
+                            <% } else { %>
+                                <a href="/login">
+                                    <button class="createPostButton"><i class="fa-regular fa-square-plus"></i> Create
+                                        Post</button></a>
+                                <% } %>
+
+        </div>
+
+
+        <div class="forums">
+            <hr class="horizon">
+            <div id="postContainer">
+
+                <% posts.forEach(function(post, index) { %>
+                    <a tabindex="0" href="/post/<%= post._id %>">
+                        <div class="post" id="post-<%= post._id %>">
+                            <p class="userid">
+                                <%= post.username %> <br>
+                            </p>
+                            <span id="postTime">
+                                <%= post.timeAgo %>
+                            </span>
+                            <p class="postTitle">
+                                <%= post.title %>
+                            </p>
+                            <p class="postContent">
+                                <%= post.content %>
+                            </p>
+                            <p class="postImg">
+                                <% if (post.img) { %>
+                                    <img src="<%= post.img %>" alt="post img" id="userImg">
+                                    <% } %>
+                            </p>
+                            <hr class="horizon">
+                            <div class="postActions">
+                                <% if (userId) { %>
+                                    <% if ((post.likes).includes(userId)) { %>
+                                        <a class="like" href="/remove-like/<%= post._id %>"><i
+                                                class="fa-solid fa-thumbs-up" style="color: #1e90ff;"></i>
+                                            <%= post.likeCount %>
+                                        </a>
+                                        <% } else { %>
+                                            <a class="like" href="/like-post/<%= post._id %>"><i
+                                                    class="fa-regular fa-thumbs-up"></i>
+                                                <span class="likeCount" style="color: black;">
+                                                    <%= post.likeCount %>
+                                                </span>
+                                            </a>
+                                            <% } %>
+                                                <% } else { %>
+                                                    <a class="like" onclick="toggleAlert();"><i
+                                                            class="fa-regular fa-thumbs-up"></i>
+                                                        <span class="likeCount" style="color: black;">
+                                                            <%= post.likeCount %>
+                                                        </span>
+                                                    </a>
+                                                    <% } %>
+                                                        <a class="commentbutton"
+                                                            href="/post/<%= post._id %>#commentList">
+                                                            <i class="fa-regular fa-comment"></i>
+                                                            <%= post.commentCount %>
+                                                        </a>
+                            </div>
+                        </div>
+                    </a>
+                    <% }); %>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+
+        <!-- JS -->
+        <script src="/javascript/forums.js" defer></script>
+
+</body>
+
+</html>

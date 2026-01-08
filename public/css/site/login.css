@@ -1,0 +1,57 @@
+@import url('/css/partials/color.css');
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main h1 {
+    text-align: center;
+}
+
+main form > a {
+    color: var(--linkColor);
+    font-size: 14px;
+    text-decoration: none;
+    font-style: italic;
+}
+
+label,
+input,
+button {
+    display: block;
+}
+
+label {
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+input,
+button {
+    width: 300px;
+    height: 40px;
+}
+
+button {
+    margin: 25px auto;
+}
+
+#showpass {
+    display: block;
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.error {
+    color: var(--errorColor);
+    font-size: 14px;
+    user-select: none;
+    width: 300px;
+    margin-top: 25px;
+}

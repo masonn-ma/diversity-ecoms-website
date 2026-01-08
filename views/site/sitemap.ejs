@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Sitemap</title>
+    <%- include('../partials/head') %>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <h1 style="text-align: center;border-bottom: 1px solid var(--borderColor);padding-bottom: 25px;">Sitemap</h1>
+        <ul>
+            <% let formatList = []; %>
+            <% if (!admin) { %>
+                <% formatList = siteList.slice(1); %>
+            <% } else { %>
+                <% formatList = siteList; %>
+            <% } %>
+            <% formatList.toSorted().forEach(function(site, index) { %>
+                <% if (site === '/') { %>
+                    <li><a href='<%= site %>'>Homepage</a></li>
+                <% } else if (site.includes('-')) { %>
+                    <li><a href='<%= site %>'>
+                        <%= site.charAt(1).toUpperCase() + site.slice(2, site.indexOf('-')) + " " + site.slice(site.indexOf('-') + 1) %>
+                    </a></li>
+                <% } else { %>
+                    <li><a href='<%= site %>'><%= site.charAt(1).toUpperCase() + site.slice(2) %></a></li>
+                    <% } %>
+            <% }); %>
+        </ul>   
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+</body>
+
+</html>

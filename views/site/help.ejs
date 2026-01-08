@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Help</title>
+    <%- include('../partials/head') %>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+    <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+    <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+    
+    <link rel="stylesheet" href="/css/site/help.css"> <!-- Help css -->
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <div id="blur-bg"></div>
+        <form id="reactivateForm">
+            <div id="closePopup">X</div>
+            <p>Request to reactivate account</p>
+            <textarea name="sendRequest" id="sendRequest" rows="10" cols="50"></textarea>
+            <button type="submit">Send Request</button>
+        </form>
+        <section>
+            <div id="title">
+                <h1>HELP CENTER</h1>
+                <p>How can we help you?</p>
+            </div>
+            <div id="help-options">
+                <a href="/forgot-password" id="forgot-password-section">
+                    <div>
+                        <img src="/img/help/6146586.png" alt="forgot password icon">
+                    </div>
+                    <div>
+                        <p>Forgot password?</p>
+                        <p>If you have forgotten your password you can reset it here.</p>
+                    </div>
+                </a>
+                <div id="reactivate-account-section" tabindex="0">
+                    <div>
+                        <img src="/img/help/account-reactivate-icon-512x512-ebzywvyk.png" alt="reactivate account icon">
+                    </div>
+                    <div>
+                        <p>Reactivate account</p>
+                        <p>Your account got deactivated? Send a request to reactivate it here</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="terms">
+            <h1>TERMS AND CONDITIONS</h1>
+            <div class="content">
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing and using this website, you agree to comply with these terms and conditions. If you do not agree, please refrain from using the site.</p>
+                <h2>2. Intellectual Property Rights</h2>
+                <ul>
+                    <li>All content on this website (text, images, videos, etc.) is protected by intellectual property laws.</li>
+                    <li>You may not reproduce, distribute, or modify any content without our explicit permission.</li>
+                </ul>
+                <h2>3. User Conduct</h2>
+                <ul>
+                    <li>You agree not to engage in any harmful, illegal, or disruptive behavior while using the website.</li>
+                    <li>Respect other users and refrain from posting offensive or inappropriate content.</li>
+                </ul>
+                <h2>4. Limitation of Liability</h2>
+                <ul>
+                    <li>We are not liable for any direct, indirect, or consequential damages arising from your use of the website.</li>
+                    <li>Use the site at your own risk.</li>
+                </ul>
+                <h2>5. Privacy Policy</h2>
+                <ul>
+                    <li>Our privacy policy outlines how we collect, use, and protect your personal information. Please review it.</li>
+                </ul>
+                <h2>6. Changes to Terms</h2>
+                <ul>
+                    <li>We reserve the right to modify these terms and conditions at any time.</li>
+                    <li>Check this page periodically for updates.</li>
+                </ul>
+                <h2>7. Contact Information</h2>
+                <ul>
+                    <li>If you have any questions or concerns, contact us at realEmail@email.com.</li>
+                </ul>
+            </div>
+        </section>
+        <section id="policy">
+            <h1>PRIVACY POLICY</h1>
+            <div class="content">
+                <h2>1. Introduction</h2>
+                <p>Welcome to our website! This privacy policy explains how we collect, use, and protect your personal information. By using our site, you agree to the terms outlined below.</p>
+                <h2>2. Information We Collect</h2>
+                <ul>
+                    <li><strong>Personal Information:</strong> We may collect your name, email address, and other relevant details when you interact with our site.</li>
+                    <li><strong>Usage Data:</strong> We automatically collect information about your interactions with our website (e.g., pages visited, time spent, IP address).</li>
+                </ul>
+                <h2>3. How We Use Your Information</h2>
+                <ul>
+                    <li>We use your data to improve our services, personalize content, and communicate with you.</li>
+                    <li>We do not sell or share your personal information with third parties without your consent.</li>
+                </ul>
+                <h2>4. Cookies and Tracking Technologies</h2>
+                <ul>
+                    <li>We use cookies and similar technologies to enhance your browsing experience.</li>
+                    <li>You can manage cookie preferences through your browser settings.</li>
+                </ul>
+                <h2>5. Security Measures</h2>
+                <ul>
+                    <li>We take reasonable steps to protect your data from unauthorized access or disclosure.</li>
+                    <li>However, no method of transmission over the internet is 100% secure.</li>
+                </ul>
+                <h2>6. User Rights</h2>
+                <ul>
+                    <li>You have the right to access, update, or delete your personal information.</li>
+                    <li>Contact us if you want to exercise these rights.</li>
+                </ul>
+                <h2>7. Third-Party Links</h2>
+                <ul>
+                    <li>Our website may contain links to third-party sites. We are not responsible for their privacy practices.</li>
+                </ul>
+                <h2>8. Changes to Privacy Policy</h2>
+                <ul>
+                    <li>We reserve the right to update this policy. Check back periodically for any changes.</li>
+                </ul>
+                <h2>9. Contact Us</h2>
+                <ul>
+                    <li>If you have questions or concerns, reach out to us at realEmail@email.com.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+        <!-- JavaScript -->
+        <script src="/javascript/help.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,559 @@
+@import url('/css/partials/color.css');
+
+html {
+    scroll-behavior: auto;
+}
+
+main {
+    overflow: auto;
+}
+
+#blur-bg {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 900;
+    background-color: var(--blurBg);
+    transition: opacity 0.2s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#blur-bg.active {
+    opacity: 0.5;
+    visibility: visible;
+}
+
+#postForm {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column wrap;
+    background-color: var(--backgroundColor);
+    border-radius: 5px;
+    position: fixed;
+    width: 700px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 131px -61px rgba(0, 0, 0, 1);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s ease-in;
+    z-index: 999;
+    padding: 25px;
+}
+
+#postForm.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#postForm button {
+    font-size: 16px;
+    padding: 10px;
+}
+
+#postForm>#closePopup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    position: absolute;
+    margin-bottom: 25px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#postForm>#closePopup:hover {
+    background-color: var(--altBackgroundColor2);
+    border-radius: 50%;
+}
+
+#postImage {
+    padding: 10px;
+    font-size: 18px;
+}
+
+#loginAlert {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    flex-flow: column wrap;
+    background-color: var(--backgroundColor);
+    border-radius: 5px;
+    position: fixed;
+    width: 40%;
+    height: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 131px -61px rgba(0, 0, 0, 1);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s ease-in;
+    z-index: 999;
+    padding: 25px;
+}
+
+#loginAlert a {
+    font-size: 18px;
+}
+
+#loginAlert p {
+    font-size: 20px;
+}
+
+#loginAlert.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#loginAlert>#closePopupAlert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    position: absolute;
+    margin-bottom: 25px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#loginAlert>#closePopupAlert:hover {
+    background-color: var(--altBackgroundColor2);
+    border-radius: 50%;
+}
+
+#navigation {
+    margin: 0px;
+    padding-left: 40px;
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+nav>a {
+    color: var(--secondColorBlack);
+    text-decoration: none;
+}
+
+nav>a:hover {
+    text-decoration: underline;
+}
+
+#title {
+    text-align: center;
+    font-size: 45px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.forums {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Filter */
+
+select {
+    border-radius: 30px;
+    font-size: 20px;
+    border: 1px solid var(--borderColor);
+    padding: 10px;
+    padding-left: 0px;
+    box-shadow: 0px 5px 5px 0px rgba(47, 47, 47, 0.4);
+    text-align: center;
+    margin: 5px 5px;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+/* Search */
+.top>form {
+    display: flex;
+    align-items: center;
+    width: 70%;
+}
+
+#timeSelection {
+    width: 20%;
+}
+
+#filter {
+    width: 15%;
+}
+
+#filter>option {
+    width: 50%;
+}
+
+.searchContainer {
+    position: relative;
+    width: 50%;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+#search {
+    border-radius: 30px;
+    border: 1px solid var(--borderColor);
+    font-size: 20px;
+    background-color: var(--backgroundColor);
+    box-shadow: 0px 5px 5px 0px rgba(47, 47, 47, 0.4);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    appearance: none;
+    padding: 10px 40px 10px 35px;
+    width: 100%;
+}
+
+.searchContainer i {
+    position: absolute;
+    top: 47%;
+    left: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 18px;
+}
+
+#search::placeholder {
+    color: #000000;
+}
+
+#search:hover {
+    font-weight: bold;
+}
+
+#searchButton {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Create Post Button */
+.createContainer {
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.createContainer button {
+    border-radius: 30px;
+    border: 1px solid var(--borderColor);
+    font-size: 20px;
+    background-color: var(--buttonColor);
+    box-shadow: 0px 5px 5px 0px rgba(47, 47, 47, 0.4);
+    appearance: none;
+    padding: 10px 30px;
+}
+
+.createPostButton {
+    float: right;
+}
+
+#manage {
+    padding: 10px 15px;
+}
+
+.createContainer button:hover {
+    background-color: #3e8ebd;
+    font-weight: bold;
+}
+
+/* Posts */
+#postContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%;
+}
+
+#postContainer a {
+    text-decoration: none;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 70vw;
+    height: auto;
+    padding: 0px 10px;
+    margin: 0px 0px 40px;
+    border-radius: 15px;
+    border: 0.5px solid black;
+    overflow: auto;
+    word-break: break-all;
+}
+
+.post p {
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.userid {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    font-style: italic;
+}
+
+#postTime {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.postTitle {
+    margin-top: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.postContent {
+    display: block;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.postImg {
+    display: flex;
+    justify-content: center;
+}
+
+#userImg {
+    max-width: 65vw;
+    max-height: 40vw;
+}
+
+
+.postActions {
+    margin: 15px 0;
+}
+
+.like {
+    border-radius: 30px;
+    border: 1px solid var(--borderColor);
+    padding: 5px 8px;
+    margin-right: 5px;
+    text-decoration: none;
+    color: var(--buttonColor);
+}
+
+.commentbutton {
+    border-radius: 30px;
+    border: 1px solid var(--borderColor);
+    padding: 5px 8px;
+    text-decoration: none;
+}
+
+/* Lines */
+.horizon {
+    border: none;
+    height: 0.5px;
+    background-color: #000000;
+    margin: 0;
+}
+
+/* Create Post Modal */
+.createPostModal {
+    display: none;
+    position: relative;
+    z-index: 1;
+    width: 85%;
+    overflow: auto;
+    border-radius: 20px;
+    border: 0.5px solid black;
+    margin-top: 3.5%;
+}
+
+#createPostModalContent {
+    position: relative;
+    margin: 2% auto;
+    padding: 20px;
+    width: 90%;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+form input[type=text],
+textarea {
+    border: 1px solid var(--borderColor);
+    width: 100%;
+    padding: 12px;
+    margin: 2px 2px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+#submitContainer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+input[type="submit"] {
+    display: inline-block;
+    width: 8%;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid black;
+    background-color: var(--secondColorBlue);
+}
+
+/* Single Post Modal */
+
+
+.comments {
+    display: none;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 768px) {
+    #title {
+        font-size: 40px;
+    }
+
+    .top {
+        display: flex;
+    }
+
+    .top>form {
+        display: flex;
+        align-items: center;
+        width: 70%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    select {
+        font-size: 16px;
+    }
+
+    #search {
+        font-size: 16px;
+    }
+
+    #filter {
+        width: 37%;
+    }
+
+    #timeSelection {
+        width: 53%;
+    }
+
+    .searchContainer {
+        width: 100%;
+    }
+
+    #searchButton {
+        font-size: 14px;
+    }
+
+    .createContainer button {
+        padding: 8px 8px;
+        font-size: 16px;
+    }
+
+    #navigation {
+        margin: 0px;
+        padding-left: 10px;
+        padding-top: 20px;
+        font-size: 14px;
+    }
+
+    .createPostModal {
+        position: relative;
+        top: 0px;
+        margin: 3% auto;
+    }
+
+    .createPostModal input[type="submit"] {
+        width: 25%;
+    }
+
+    .post {
+        margin: 10px 0;
+        width: 94%;
+    }
+
+    #userImg {
+        max-width: 65vw;
+        max-height: 40vw;
+    }
+
+    .userid {
+        font-size: 14px;
+    }
+
+    #postTime {
+        font-size: 12px;
+    }
+
+    .postTitle {
+        font-size: 16px;
+    }
+
+    .postContent {
+        font-size: 12px;
+    }
+
+    .like {
+        font-size: 14px;
+        padding: 3px 5px;
+    }
+
+    .commentbutton {
+        font-size: 14px;
+        padding: 3px 5px;
+    }
+
+    #loginAlert {
+        width: 70%;
+    }
+
+    #loginAlert a {
+        font-size: 16px;
+    }
+
+    #loginAlert p {
+        font-size: 18px;
+    }
+
+    #postForm {
+        width: 70%;
+    }
+
+    #postForm button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    #thread {
+        width: 100%;
+    }
+
+    #postImage {
+        width: 100%;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,223 @@
+ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#userListButton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    height: 20px;
+    margin: 0;
+    background-color: var(--buttonColor);
+    border-bottom: 1px solid var(--borderColor);
+    cursor: pointer;
+}
+
+#userList {
+    display: none;
+}
+
+#userList.active {
+    display: block;
+}
+
+#userList > li {
+    border-bottom: 1px solid var(--borderColor);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    padding: 30px 15px;
+}
+
+#userListButton:hover {
+    background-color: var(--altBackgroundColor2);
+}
+
+#userList > li ~ div {
+    padding-left: 35px;
+    display: none;
+}
+
+#userList > li ~ div.active {
+    display: block;
+}
+
+#userList > li > div:nth-child(3) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#userList > li > div:nth-child(3) > form {
+    margin-left: 25px;
+}
+
+#postListButton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    height: 20px;
+    margin: 0;
+    background-color: var(--buttonColor);
+    border-bottom: 1px solid var(--borderColor);
+    cursor: pointer;
+}
+
+#postListButton:hover {
+    background-color: var(--altBackgroundColor2);
+}
+
+#postList {
+    background-color: var(--backgroundColor);
+    display: none;
+}
+
+#postList.active {
+    display: block;
+}
+
+#postList > li {
+    border-bottom: 1px solid var(--borderColor);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    padding: 30px 15px;
+}
+
+#postList > li > div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-flow: row wrap;
+    text-overflow: ellipsis;
+}
+
+#postList > li > span:nth-child(1) {
+    text-overflow: ellipsis;
+    width: 200px;
+}
+
+#postList > li > span:nth-child(2) {
+    text-overflow: ellipsis;
+    width: 200px;
+}
+
+#postList > li > div > form {
+    margin-left: 25px;
+}
+
+#commentListButton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    height: 20px;
+    margin: 0;
+    background-color: var(--buttonColor);
+    border-bottom: 1px solid var(--borderColor);
+    cursor: pointer;
+}
+
+#commentListButton:hover {
+    background-color: var(--altBackgroundColor2);
+}
+
+#commentList {
+    background-color: var(--backgroundColor);
+    display: none;
+}
+
+#commentList.active {
+    display: block;
+}
+
+#commentList > li {
+    border-bottom: 1px solid var(--borderColor);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    padding: 30px 15px;
+}
+
+#commentList > li > div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-flow: row wrap;
+    text-overflow: ellipsis;
+}
+
+#commentList > li > span:nth-child(1) {
+    text-overflow: ellipsis;
+    width: 200px;
+}
+
+#commentList > li > span:nth-child(2) {
+    text-overflow: ellipsis;
+    width: 200px;
+}
+
+#commentList > li > div > form {
+    margin-left: 25px;
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        min-height: 100vh;
+    }
+
+    #userList > li {
+        height: auto;
+    }
+
+    #userList > li > div:nth-child(3) {
+        align-items: flex-end;
+        flex-flow: column wrap;
+    }
+
+    #userList > li > div:nth-child(3) > form {
+        margin: 25px 0;
+    }
+
+    #commentList > li {
+        height: auto;
+    }
+
+    #commentList > li > div {
+        align-items: flex-end;
+        flex-flow: column wrap;
+    }
+
+    #commentList > li > div > form {
+        margin: 25px 0;
+    }
+
+    #postList > li {
+        height: auto;
+    }
+
+    #postList > li > div {
+        align-items: flex-end;
+        flex-flow: column wrap;
+    }
+
+    #postList > li > div > form {
+        margin: 25px 0;
+    }
+}

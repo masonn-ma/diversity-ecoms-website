@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Diversity</title>
+    <%- include('../partials/head') %>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common CSS -->
+    <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar CSS -->
+    <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer CSS -->
+
+    <link rel="stylesheet" href="/css/site/landing.css"> <!-- Landing CSS -->
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <section>
+            <!-- Slides -->
+            <div id="slideshow-container">
+                <a href="#">
+                    <div class="slide">
+                        <img src="/img/landing/vogue-katy-perry-lede 1.png" alt="Slide 1">
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="slide">
+                        <img src="/img/landing/cover1.jpg" alt="Slide 2">
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="slide">
+                        <img src="/img/landing/cover2.jpg" alt="Slide 3">
+                    </div>
+                </a>
+
+                <!-- Navigation dots -->
+                <div class="dots" aria-label="Slideshow Navigation">
+                    <span class="dot" aria-labelledby="slide1"></span>
+                    <span class="dot" aria-labelledby="slide2"></span>
+                    <span class="dot" aria-labelledby="slide3"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="trending-container">
+            <div><h1>TRENDING</h1></div>
+            <div id="model-container">
+                <div>
+                    <a href="#" aria-label="Model 1"></a>
+                    <img src="/img/landing/model1.png" alt="Model 1">
+                </div>
+                <div>
+                    <a href="#" aria-label="Model 2"></a>
+                    <img src="/img/landing/model2.png" alt="Model 2">
+                </div>
+                <div>
+                    <a href="#" aria-label="Model 3"></a>
+                    <img src="/img/landing/model3.png" alt="Model 3">
+                </div>
+                <div>
+                    <a href="#"aria-label="Model 4"></a>
+                    <img src="/img/landing/model4.png" alt="Model 4">
+                </div>
+            </div>
+            <div><a href="/category">Browse</a></div>
+        </section>
+
+        <section id="latest-release-container">
+            <div id="latest"><h1>LATEST RELEASES</h1></div>
+            <div id="product-grid" role="list">
+                <% prodList.forEach(function(item) { %>
+                    <a href="/product/<%= item._id %>" role="listitem" aria-label="<%= item.name %>">
+                        <div class="product">
+                            <div id="img-container"><img src="<%= item.img %>" alt="<%= item.name %>"></div>
+                            <div id="product-desc">
+                                <span id="prod-name"><%= item.name %></span>
+                            </div>
+                        </div>
+                    </a>
+                <% }); %>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+    <!-- JavaScript -->
+    <script src="javascript/landing.js" defer></script>
+</body>
+
+</html>

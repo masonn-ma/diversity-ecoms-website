@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Admin page</title>
+    <%- include('../partials/head') %>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+
+        <link rel="stylesheet" href="/css/site/admin.css"> <!-- Admin css -->
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <ul>
+            <li id="userListButton" tabindex="0">Users</li>
+            <ul id="userList">
+                <% if (userList) { %>
+                    <% userList.forEach(function(item, index) { %>
+                        <li tabindex="0">
+                            <div>
+                                <span>User: <%= item.name %> (<%= item._id %>)</span>
+                            </div>
+                            <div>
+                                <% if (item.details[0].deactivate) { %>
+                                    <span>Status: Locked</span>
+                                <% } else { %>
+                                    <span>Status: Unlocked</span>
+                                <% } %>
+                            </div>
+                            <div>
+                                <button class="viewDetails">View details</button>
+                                <form method="POST" action="/settings/deactivate"><button name="lock" value="<%= item._id %>">Lock account</button></form>
+                                <form method="POST" action="/settings/activate"><button name="unlock" value="<%= item._id %>">Unlock account</button></form>
+                            </div>
+                        </li>
+                        <div>
+                            <h2 style="text-align: center;">Details</h2>
+                            <p>Email: <%= item.email %></p>
+                            <p>Password: <%= item.password %></p>
+                            <p>Phone Number: <%= item.pNo %></p>
+                            <p>Darkmode: <%= item.details[0].darkMode %></p>
+                            <p>Admin: <%= item.details[0].admin %></p>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </ul>
+        </ul>
+        <ul>
+            <li id="postListButton" tabindex="0">Posts</li>
+            <ul id="postList">
+                <% if (postList) { %> 
+                    <% postList.forEach(function(post, index) { %>
+                        <li tabindex="0">
+                            <span>Title: <%= post.title %></span>
+                            <span>Status:
+                                <% if (post.deleted) { %>
+                                    Archived
+                                <% } else { %>
+                                    Unarchived
+                                <% } %>
+                            </span>
+                            <div>
+                                <a href="/post/<%= post._id %>" role="button">View post</a>
+                                <form action="/delete-post" method="POST"><button type="submit" name="postId" value="<%= post._id %>">Archive post</button></form>
+                                <form action="/restore-post" method="POST"><button type="submit" name="postId" value="<%= post._id %>">Unarchive post</button></form>
+                            </div>
+                        </li>
+                    <% }); %>
+                <% } else { %>
+                    <li><span>So empty...</span></li>
+                <% } %>
+            </ul>
+        </ul>
+        <ul>
+            <li id="commentListButton" tabindex="0">Comment</li>
+            <ul id="commentList">
+                <% if (commentList) { %>
+                    <% commentList.forEach(function(comment, index) { %>
+                        <li tabindex="0">
+                            <span>Author: <%= comment.author %></span>
+                            <span>Status:
+                                <% if (comment.deleted) { %>
+                                    Archived
+                                <% } else { %>
+                                    Unarchived
+                                <% } %>
+                            </span>
+
+                            <div>
+                                <a href="/post/<%= comment.postId %>#comment-<%= comment._id %>" role="button">View comment</a>
+                                <form method="POST" action="/delete-comment"><button type="submit" name="commentId" value="<%= comment._id %>">Archive comment</button></form>
+                                <form method="POST" action="/restore-comment"><button type="submit" name="commentId" value="<%= comment._id %>">Unarchive comment</button></form>
+                            </div>
+                        </li>
+                    <% }); %>
+                <% } else { %>
+                    <li><span>So empty...</span></li>
+                <% } %>
+            </ul>
+        </ul>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+    <script src="/javascript/admin.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Page not found</title>
+    <%- include('../partials/head') %>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/partials/common.css"> <!-- Common css -->
+        <link rel="stylesheet" href="/css/partials/navbar.css"> <!-- Navbar css -->
+        <link rel="stylesheet" href="/css/partials/footer.css"> <!-- Footer css -->
+
+        <link rel="stylesheet" href="/css/site/errorPage.css"> <!-- Created account css -->
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header role="banner">                                                             
+        <!-- Navbar -->
+        <%- include('../partials/navbar') %>
+    </header>
+
+    <!-- Main -->
+    <main role="main">
+        <article>
+            <h1>Oops, something went wrong!</h1>
+            <p>You can return to the <a href="/">home page</a> or send us <a href="/about-us/#question">a message</a>.</p>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+</body>
+
+</html>

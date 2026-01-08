@@ -1,0 +1,196 @@
+@import url('/css/partials/color.css');
+
+section:nth-child(1) {
+    min-height: calc(100vh - 75px);
+}
+
+section {
+    min-height: 100vh;
+}
+
+section+section {
+    border-top: 1px solid var(--borderColor);
+}
+
+section:nth-child(1) {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 200px;
+    box-sizing: border-box;
+}
+
+section:nth-child(1)>h1 {
+    text-align: center;
+    font-size: 32px;
+}
+
+section:nth-child(1)>#intro>p {
+    text-align: justify;
+    text-justify: inter-word;
+    text-wrap: pretty;
+    font-size: 24px;
+}
+
+/* contacts */
+section:nth-child(3) {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 10vh 90vh;
+}
+
+section:nth-child(3)>#contactTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: 1 / 1 / 2 / 3;
+    font-size: 32px;
+}
+
+section:nth-child(3)>#contacts {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+section:nth-child(3)>#contacts img {
+    height: 50px;
+}
+
+section:nth-child(3)>#contacts>div {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 250px;
+}
+
+section:nth-child(3)>#contacts>div:nth-child(4) {
+    flex-flow: row wrap;
+    width: 250px;
+    justify-content: space-evenly;
+}
+
+section:nth-child(3)>#question {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    border-left: 1px solid var(--borderColor);
+    margin-bottom: 50px;
+}
+
+section:nth-child(3)>#question textarea {
+    resize: none;
+    width: 70vw;
+    height: 40vh;
+    border: 1px solid var(--borderColor);
+    border-radius: 30px;
+    box-sizing: border-box;
+    padding: 15px;
+    box-shadow:
+        0px 2.2px 2.2px rgba(0, 0, 0, 0.02),
+        0px 5.3px 5.3px rgba(0, 0, 0, 0.028),
+        0px 10px 10px rgba(0, 0, 0, 0.035),
+        0px 17.9px 17.9px rgba(0, 0, 0, 0.042);
+}
+
+#contacts div {
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Our team */
+section:nth-child(2) {
+    display: grid;
+    grid-template-rows: 10vh 90vh;
+}
+
+section:nth-child(2)>h1 {
+    text-align: center;
+    font-size: 32px;
+}
+
+section:nth-child(2)>#teamMem {
+    display: flex;
+    height: 90vh;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 20px;
+}
+
+section:nth-child(2)>#teamMem img {
+    width: 20vw;
+}
+
+section:nth-child(2)>#teamMem > div {
+    text-align: center;
+}
+
+section:nth-child(2)>#teamMem p {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+    section {
+        min-height: 50vh;
+    }
+    
+    section:nth-child(1) {
+        padding: 0 50px;
+        min-height: 50vh;
+    }
+
+    section:nth-child(1)>#intro>p {
+        font-size: 18px;
+        margin-bottom: 40px;
+        word-break: break-all;
+        -ms-word-break: break-all;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+    }
+
+    section:nth-child(2) {
+        grid-template-rows: 10vh 60vh;
+    }
+
+    section:nth-child(2)>#teamMem {
+        overflow-x: auto;
+        justify-content: flex-start;
+        height: 60vh;
+    }
+
+    section:nth-child(2)>#teamMem img {
+        width: 50vw;
+
+    }
+
+    section:nth-child(2)>#teamMem p {
+        font-size: 20px;
+        margin-top: 5px;
+    }
+
+    section:nth-child(3) {
+        display: grid;
+        grid-template-columns: 100vw;
+        grid-template-rows: 10vh 50vh 70vh;
+    }
+
+    section:nth-child(3)>#question {
+        border-left: none;
+    }
+
+    section:nth-child(3)>#contacts img {
+        height: 6vh;
+    }
+
+    section:nth-child(3)>#contactTitle {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+}

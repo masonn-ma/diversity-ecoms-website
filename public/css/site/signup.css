@@ -1,0 +1,61 @@
+@import url('/css/partials/color.css');
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main ul {
+    width: 300px;
+    box-sizing: border-box;
+}
+
+main ul li {
+    margin-top: 15px;
+}
+
+main h1 {
+    text-align: center;
+}
+
+label,
+input,
+button {
+    display: block;
+}
+
+label {
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+input,
+button {
+    width: 300px;
+    height: 40px;
+}
+
+button {
+    margin: 25px auto;
+}
+
+#showpass {
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    margin-top: 5px;
+}
+
+.error {
+    color: var(--errorColor);
+    font-size: 14px;
+    user-select: none;
+}
+
+div[class="g-recaptcha"] {
+    margin-top: 5px;
+    border: 1px solid var(--borderColor);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
