@@ -19,9 +19,7 @@ Admin: <br>
 - Password: AdminAccount123
 
 (4) MongoDB Atlas database:
-- Connection URL: (mongodb+srv://diversityAdmin:diversityAdmin@diversitystore.2t0c97h.mongodb.net/final?retryWrites=true&w=majority&appName=DiversityStore)
-- Database name: diversityAdmin
-- Database password: diversityAdmin
+- Connection URL: (#)
 
 (5) Instructions to run website: <br>
 <strong> Pull from the latest commit first</strong>
